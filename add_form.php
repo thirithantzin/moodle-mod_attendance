@@ -132,6 +132,7 @@ class mod_attendance_add_form extends moodleform {
         );
         $mform->addElement('autocomplete', 'strainer', get_string('selecttrainer', 'attendance'), array(), $options);
 
+
         // If warnings allow selector for reporting.
         if (!empty(get_config('attendance', 'enablewarnings'))) {
             $mform->addElement('checkbox', 'absenteereport', '', get_string('includeabsentee', 'attendance'));
@@ -358,7 +359,6 @@ class mod_attendance_add_form extends moodleform {
         if (!isset($data['strainer']) || empty($data['strainer'])) {
             $errors['strainer'] = get_string('trainermissing', 'attendance');
         }
-
         return $errors;
     }
 

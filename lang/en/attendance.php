@@ -61,6 +61,8 @@ $string['attendancenotset'] = 'You must set your attendance';
 $string['attendancenotstarted'] = 'Attendance has not started yet for this course';
 $string['attendancepercent'] = 'Attendance percent';
 $string['attendancereport'] = 'Attendance report';
+$string['attendanceslogged'] = 'Attendances logged';
+$string['attendancestaken'] = 'Attendances taken';
 $string['attendancesuccess'] = 'Attendance has been successfully taken';
 $string['attendanceupdated'] = 'Attendance successfully updated';
 $string['attforblockdirstillexists'] = 'old mod/attforblock directory still exists - you must delete this directory on your server before running this upgrade.';
@@ -76,6 +78,9 @@ $string['autorecorded'] = 'system auto recorded';
 $string['averageattendance'] = 'Average attendance';
 $string['averageattendancegraded'] = 'Average attendance';
 $string['calclose'] = 'Close';
+$string['calendarevent'] = 'Create calendar event for session';
+$string['calendarevent_help'] = 'If enabled, a calendar event will be created for this session.
+If disabled, any existing calendar event for this session will be deleted.';
 $string['caleventcreated'] = 'Calendar event for session successfully created';
 $string['caleventdeleted'] = 'Calendar event for session successfully deleted';
 $string['calmonths'] = 'January,February,March,April,May,June,July,August,September,October,November,December';
@@ -248,7 +253,7 @@ $string['invalidstatus'] = 'You have selected an invalid status, please try agai
 $string['iptimemissing'] = 'Invalid minutes to release';
 $string['trainermissing'] = 'Please select trainer';
 $string['jumpto'] = 'Jump to';
-$string['lowgrade'] = 'Low grade';
+$string['below'] = 'Below {$a}%';
 $string['maxpossible'] = 'Maximum possible';
 $string['maxpossible_help'] = 'Shows the score each user can reach if they receive the maximum points in each session not yet taken (past and future):
     <ul>

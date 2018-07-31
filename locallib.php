@@ -587,6 +587,11 @@ function attendance_construct_sessions_data_for_add($formdata, mod_attendance_st
         $formdata->studentscanmark = 0;
     }
 
+    $calendarevent = 0;
+    if (isset($formdata->calendarevent)) { // Calendar event should be created.
+        $calendarevent = 1;
+    }
+
     $sessions = array();
     if (isset($formdata->addmultiply)) {
         $startdate = $sessiondate;

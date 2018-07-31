@@ -75,6 +75,7 @@ class mod_attendance_update_form extends moodleform {
                 'automarkcompleted' => 0,
                 'preventsharedip' => $sess->preventsharedip,
                 'preventsharediptime' => $sess->preventsharediptime);
+
         if ($sess->subnet == $attendancesubnet) {
             $data['usedefaultsubnet'] = 1;
         } else {
@@ -193,7 +194,6 @@ class mod_attendance_update_form extends moodleform {
         }
 
         $mform->setDefaults($data);
-
         $this->add_action_buttons(true);
     }
 
