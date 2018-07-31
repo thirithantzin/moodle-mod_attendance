@@ -137,6 +137,19 @@ class attendance_webservices_tests extends advanced_testcase {
         $this->assertEquals($this->attendance->id, $sessioninfo->attendanceid);
         $this->assertEquals($session->id, $sessioninfo->id);
         $this->assertEquals(count($sessioninfo->users), 10);
+    }
+
+    public function test_get_session_trainer() {
+        $this->resetAfterTest(true);
+
+        $courseswithsessions = attendance_handler::get_courses_with_today_sessions($this->teacher->id);
+
+        $course = array_pop($courseswithsessions);
+        $attendanceinstance = array_pop($course->attendance_instances);
+        $session = array_pop($attendanceinstance['today_sessions']);
+
+        $sessioninfo = attendance_handler::get_session($session->id);
+
         $this->assertEquals($sessioninfo->trainer, $this->trainer->id);
     }
 
