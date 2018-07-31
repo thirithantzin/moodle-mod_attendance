@@ -125,16 +125,13 @@ class mod_attendance_add_form extends moodleform {
                             array('maxfiles' => EDITOR_UNLIMITED_FILES, 'noclean' => true, 'context' => $modcontext));
         $mform->setType('sdescription', PARAM_RAW);
 
-        if (!empty($pluginconfig->enablecalendar)) {
-            $mform->addElement('checkbox', 'calendarevent', '', get_string('calendarevent', 'attendance'));
-            $mform->addHelpButton('calendarevent', 'calendarevent', 'attendance');
-            if (isset($pluginconfig->calendarevent_default)) {
-                $mform->setDefault('calendarevent', $pluginconfig->calendarevent_default);
-            }
-        } else {
-            $mform->addElement('hidden', 'calendarevent', 0);
-            $mform->setType('calendarevent', PARAM_INT);
-        }
+        // Add trainer
+        $options = array(
+            'ajax' => 'tool_lp/form-user-selector',
+            'multiple' => false,
+        );
+        $mform->addElement('autocomplete', 'strainer', get_string('selecttrainer', 'attendance'), array(), $options);
+
 
         // If warnings allow selector for reporting.
         if (!empty(get_config('attendance', 'enablewarnings'))) {
@@ -357,6 +354,10 @@ class mod_attendance_add_form extends moodleform {
                 empty($data['preventsharediptime'])) {
             $errors['preventsharedgroup'] = get_string('iptimemissing', 'attendance');
 
+        }
+
+        if (!isset($data['strainer']) || empty($data['strainer'])) {
+            $errors['strainer'] = get_string('trainermissing', 'attendance');
         }
         return $errors;
     }

@@ -624,7 +624,7 @@ function attendance_construct_sessions_data_for_add($formdata, mod_attendance_st
                     $sess->descriptionitemid = $formdata->sdescription['itemid'];
                     $sess->description = $formdata->sdescription['text'];
                     $sess->descriptionformat = $formdata->sdescription['format'];
-                    $sess->calendarevent = $calendarevent;
+                    $sess->trainer = $formdata->strainer;
                     $sess->timemodified = $now;
                     $sess->absenteereport = $absenteereport;
                     $sess->studentpassword = '';
@@ -675,7 +675,7 @@ function attendance_construct_sessions_data_for_add($formdata, mod_attendance_st
         $sess->descriptionitemid = $formdata->sdescription['itemid'];
         $sess->description = $formdata->sdescription['text'];
         $sess->descriptionformat = $formdata->sdescription['format'];
-        $sess->calendarevent = $calendarevent;
+        $sess->trainer = $formdata->strainer;
         $sess->timemodified = $now;
         $sess->studentscanmark = 0;
         $sess->autoassignstatus = 0;

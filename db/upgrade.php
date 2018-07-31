@@ -454,7 +454,7 @@ function xmldb_attendance_upgrade($oldversion=0) {
         upgrade_mod_savepoint(true, 2017082200, 'attendance');
     }
 
-    if ($oldversion < 2017120700) {
+    if ($oldversion < 2017112001) {
         $table = new xmldb_table('attendance_sessions');
 
         $field = new xmldb_field('absenteereport');
@@ -463,10 +463,10 @@ function xmldb_attendance_upgrade($oldversion=0) {
             $dbman->add_field($table, $field);
         }
 
-        upgrade_mod_savepoint(true, 2017120700, 'attendance');
+        upgrade_mod_savepoint(true, 2017112001, 'attendance');
     }
 
-    if ($oldversion < 2017120801) {
+    if ($oldversion < 2017112002) {
         $table = new xmldb_table('attendance_sessions');
 
         $field = new xmldb_field('autoassignstatus');
@@ -475,20 +475,21 @@ function xmldb_attendance_upgrade($oldversion=0) {
             $dbman->add_field($table, $field);
         }
 
-        upgrade_mod_savepoint(true, 2017120801, 'attendance');
+
+        upgrade_mod_savepoint(true, 2017112002, 'attendance');
     }
 
-    if ($oldversion < 2018022204) {
+    if ($oldversion < 2017112005) {
         $table = new xmldb_table('attendance');
         $field = new xmldb_field('showextrauserdetails', XMLDB_TYPE_INTEGER, '1', XMLDB_UNSIGNED,
             XMLDB_NOTNULL, null, '1', 'showsessiondetails');
         if (!$dbman->field_exists($table, $field)) {
             $dbman->add_field($table, $field);
         }
-        upgrade_mod_savepoint(true, 2018022204, 'attendance');
+        upgrade_mod_savepoint(true, 2017112005, 'attendance');
     }
 
-    if ($oldversion < 2018050100) {
+    if ($oldversion < 2017112007) {
         $table = new xmldb_table('attendance_sessions');
         $field = new xmldb_field('preventsharedip', XMLDB_TYPE_INTEGER, '1', XMLDB_UNSIGNED,
             XMLDB_NOTNULL, null, '0', 'absenteereport');
@@ -508,21 +509,7 @@ function xmldb_attendance_upgrade($oldversion=0) {
             $dbman->add_field($table, $field);
         }
 
-        upgrade_mod_savepoint(true, 2018050100, 'attendance');
-    }
-
-    if ($oldversion < 2018072700) {
-        $table = new xmldb_table('attendance_sessions');
-        $field = new xmldb_field('calendarevent', XMLDB_TYPE_INTEGER, '1', XMLDB_UNSIGNED,
-            XMLDB_NOTNULL, null, '1', 'caleventid');
-        if (!$dbman->field_exists($table, $field)) {
-            $dbman->add_field($table, $field);
-            if (empty(get_config('attendance', 'enablecalendar'))) {
-                // Calendar disabled on this site, set calendarevent for existing records to 0.
-                $DB->execute("UPDATE {attendance_sessions} set calendarevent = 0");
-            }
-        }
-        upgrade_mod_savepoint(true, 2018072700, 'attendance');
+        upgrade_mod_savepoint(true, 2017112007, 'attendance');
     }
 
     return $result;

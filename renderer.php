@@ -257,6 +257,7 @@ class mod_attendance_renderer extends plugin_renderer_base {
                 get_string('time'),
                 get_string('sessiontypeshort', 'attendance'),
                 get_string('description', 'attendance'),
+                get_string('trainer', 'attendance'),
                 get_string('actions'),
                 html_writer::checkbox('cb_selector', 0, false, '', array('id' => 'cb_selector'))
             );
@@ -286,6 +287,8 @@ class mod_attendance_renderer extends plugin_renderer_base {
                 $table->data[$sess->id][] = get_string('commonsession', 'attendance');
             }
             $table->data[$sess->id][] = $sess->description;
+            $trainer = $sessdata->att->get_user($sess->trainer);
+            $table->data[$sess->id][] = $trainer->firstname . ' ' . $trainer->lastname;
             $table->data[$sess->id][] = $dta['actions'];
             $table->data[$sess->id][] = html_writer::checkbox('sessid[]', $sess->id, false, '',
                                                               array('class' => 'attendancesesscheckbox'));
@@ -1236,7 +1239,7 @@ class mod_attendance_renderer extends plugin_renderer_base {
      * @return array Array of html_table_row objects
      */
     protected function get_user_rows(attendance_report_data $reportdata) {
-        global $OUTPUT, $PAGE;
+        global $OUTPUT;
         $rows = array();
 
         $bulkmessagecapability = has_capability('moodle/course:bulkmessaging', $PAGE->context);
@@ -1258,15 +1261,11 @@ class mod_attendance_renderer extends plugin_renderer_base {
                 $extrafields = array();
             }
         }
-        $usercolspan = count($extrafields);
+        $usercolspan = 1 + count($extrafields);
 
         $row = new html_table_row();
-        $cell = $this->build_header_cell($text, false, false);
-        $cell->attributes['class'] = $cell->attributes['class'] . ' headcol';
-        $row->cells[] = $cell;
-        if (!empty($usercolspan)) {
-            $row->cells[] = $this->build_header_cell('', false, false, $usercolspan);
-        }
+        $row->cells[] = $this->build_header_cell('');
+        $row->cells[] = $this->build_header_cell($text, false, false, $usercolspan);
         $rows[] = $row;
 
         $row = new html_table_row();
