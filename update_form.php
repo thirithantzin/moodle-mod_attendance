@@ -110,6 +110,14 @@ class mod_attendance_update_form extends moodleform {
                            array('rows' => 1, 'columns' => 80), $defopts);
         $mform->setType('sdescription', PARAM_RAW);
 
+        // Add trainer
+        $options = array(
+            'ajax' => 'tool_lp/form-user-selector',
+            'multiple' => false,
+        );
+        $user = $this->_customdata['att']->get_user($sess->trainer);
+        $mform->addElement('autocomplete', 'strainer', get_string('selecttrainer', 'attendance'), array($user->id => $user->firstname . ' ' . $user->lastname), $options);
+
         // If warnings allow selector for reporting.
         if (!empty(get_config('attendance', 'enablewarnings'))) {
             $mform->addElement('checkbox', 'absenteereport', '', get_string('includeabsentee', 'attendance'));
@@ -222,6 +230,11 @@ class mod_attendance_update_form extends moodleform {
             $errors['preventsharedgroup'] = get_string('iptimemissing', 'attendance');
 
         }
+
+        if (!isset($data['strainer']) || empty($data['strainer'])) {
+            $errors['strainer'] = get_string('trainermissing', 'attendance');
+        }
+
         return $errors;
     }
 }

@@ -530,6 +530,7 @@ class mod_attendance_structure {
             array('subdirs' => false, 'maxfiles' => -1, 'maxbytes' => 0), $formdata->sdescription['text']);
         $sess->description = $description;
         $sess->descriptionformat = $formdata->sdescription['format'];
+        $sess->trainer = $formdata->strainer;
 
         $sess->studentscanmark = 0;
         $sess->autoassignstatus = 0;
