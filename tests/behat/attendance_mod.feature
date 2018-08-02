@@ -20,6 +20,7 @@ Feature: Teachers and Students can record session attendance
       | username    | firstname | lastname | email            | idnumber | department       | institution |
       | student1    | Sam       | Student  | student1@asd.com | 1234     | computer science | University of Nottingham |
       | teacher1    | Teacher   | One      | teacher1@asd.com | 5678     | computer science | University of Nottingham |
+      | trainer     | Trainer   | One      | trainer1@asd.com | 5679     | computer science | University of Nottingham |
     And the following "course enrolments" exist:
       | course | user     | role           | timestart     |
       | C1     | student1 | student        | ##yesterday## |
@@ -47,6 +48,7 @@ Feature: Teachers and Students can record session attendance
       | id_sestime_starthour | 00 |
       | id_sestime_endhour   | 23 |
       | id_sestime_endminute | 55 |
+      | id_strainer          | 5679 |
     And I click on "id_submitbutton" "button"
     And I log out
     And I log in as "student1"
