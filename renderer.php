@@ -256,6 +256,7 @@ class mod_attendance_renderer extends plugin_renderer_base {
                 get_string('time'),
                 get_string('sessiontypeshort', 'attendance'),
                 get_string('description', 'attendance'),
+                get_string('trainer', 'attendance'),
                 get_string('actions'),
                 html_writer::checkbox('cb_selector', 0, false, '', array('id' => 'cb_selector'))
             );
@@ -285,6 +286,8 @@ class mod_attendance_renderer extends plugin_renderer_base {
                 $table->data[$sess->id][] = get_string('commonsession', 'attendance');
             }
             $table->data[$sess->id][] = $sess->description;
+            $trainer = $sessdata->att->get_user($sess->trainer);
+            $table->data[$sess->id][] = $trainer->firstname . ' ' . $trainer->lastname;
             $table->data[$sess->id][] = $dta['actions'];
             $table->data[$sess->id][] = html_writer::checkbox('sessid[]', $sess->id, false, '',
                                                               array('class' => 'attendancesesscheckbox'));

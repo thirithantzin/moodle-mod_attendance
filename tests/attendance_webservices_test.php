@@ -82,6 +82,7 @@ class attendance_webservices_tests extends advanced_testcase {
         $session->description = "";
         $session->descriptionformat = 1;
         $session->descriptionitemid = 0;
+        $session->trainer = $this->trainer->id;
         $session->timemodified = time();
         $session->statusset = 0;
         $session->groupid = 0;
@@ -102,6 +103,8 @@ class attendance_webservices_tests extends advanced_testcase {
 
         $this->teacher = $this->getDataGenerator()->create_user();
         $this->getDataGenerator()->enrol_user($this->teacher->id, $this->course->id, 3); // Enrol as teacher.
+
+        $this->trainer = $this->getDataGenerator()->create_user();
     }
 
     public function test_get_courses_with_today_sessions() {
@@ -134,6 +137,7 @@ class attendance_webservices_tests extends advanced_testcase {
         $this->assertEquals($this->attendance->id, $sessioninfo->attendanceid);
         $this->assertEquals($session->id, $sessioninfo->id);
         $this->assertEquals(count($sessioninfo->users), 10);
+        $this->assertEquals($sessioninfo->trainer, $this->trainer->id);
     }
 
     public function test_update_user_status() {
