@@ -129,8 +129,8 @@ class mod_attendance_add_form extends moodleform {
             'ajax' => 'tool_lp/form-user-selector',
             'multiple' => false,
         );
-        $mform->addElement('autocomplete', 'strainer', get_string('selecttrainer', 'attendance'), array(), $options);
-        
+        $mform->addElement('autocomplete', 'strainer', 'Select Trainer', array(), $options);
+
         // If warnings allow selector for reporting.
         if (!empty(get_config('attendance', 'enablewarnings'))) {
             $mform->addElement('checkbox', 'absenteereport', '', get_string('includeabsentee', 'attendance'));
