@@ -17,12 +17,12 @@ cache:
 
 php:
   - 7.1
-  - 7.2
+  # - 7.2
 env:
  global:
-  - MOODLE_BRANCH=master
+  - MOODLE_BRANCH=MOODLE_34_STABLE
  matrix:
-  - DB=pgsql
+  # - DB=pgsql
   - DB=mysqli
 
 before_install:
@@ -37,13 +37,13 @@ install:
   - moodle-plugin-ci install
 
 script:
-  - moodle-plugin-ci phplint
-  - moodle-plugin-ci phpcpd
-  - moodle-plugin-ci phpmd
-  - moodle-plugin-ci codechecker
-  - moodle-plugin-ci validate
-  - moodle-plugin-ci savepoints
-  - moodle-plugin-ci mustache
-  - moodle-plugin-ci grunt
+  # - moodle-plugin-ci phplint
+  # - moodle-plugin-ci phpcpd
+  # - moodle-plugin-ci phpmd
+  # - moodle-plugin-ci codechecker
+  # - moodle-plugin-ci validate
+  # - moodle-plugin-ci savepoints
+  # - moodle-plugin-ci mustache
+  # - moodle-plugin-ci grunt
   - moodle-plugin-ci phpunit
   - moodle-plugin-ci behat
